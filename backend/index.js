@@ -1,12 +1,15 @@
-const express = require('express')
-const app = express()
-const puerto = 3000
-const localhost = '127.0.0.1'
+import express from  'express';
+import { expressConfig } from './src/config.js';
+
+app.set('port', expressConfig.port)
+app.set('host', expressConfig.host);
+
+const app = express();
 
 app.get('/', (req, res) => {
   res.send('servidor funcionando')
 })
 
-app.listen(puerto, localhost, () => {
-  console.log(`escuchando al puerto ${puerto}`)
+app.listen(app.get('port'), app.get('host'), () => {
+  console.log(`Servidor funcionando en http://${app.get('host')}:${app.get('port')}`)
 })
